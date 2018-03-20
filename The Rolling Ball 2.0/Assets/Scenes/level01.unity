@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 792066609}
   - component: {fileID: 792066608}
   m_Layer: 0
-  m_Name: Main Camera
+  m_Name: Camera Principal
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -154,7 +154,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.1921569, g: 0.39272484, b: 0.47450984, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -194,6 +194,73 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &987555840
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4443462924632910, guid: 4ba13d2988d971f4689eb3ccc6a82449, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4443462924632910, guid: 4ba13d2988d971f4689eb3ccc6a82449, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4443462924632910, guid: 4ba13d2988d971f4689eb3ccc6a82449, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4443462924632910, guid: 4ba13d2988d971f4689eb3ccc6a82449, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4443462924632910, guid: 4ba13d2988d971f4689eb3ccc6a82449, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4443462924632910, guid: 4ba13d2988d971f4689eb3ccc6a82449, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4443462924632910, guid: 4ba13d2988d971f4689eb3ccc6a82449, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4443462924632910, guid: 4ba13d2988d971f4689eb3ccc6a82449, type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 23260762611765766, guid: 4ba13d2988d971f4689eb3ccc6a82449,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6b22da040c488c7488e56d99e362b6f0, type: 2}
+    - target: {fileID: 23357651043672192, guid: 4ba13d2988d971f4689eb3ccc6a82449,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: dc60885acbfd2804fb09f97b55efd53a, type: 2}
+    - target: {fileID: 23032442371854298, guid: 4ba13d2988d971f4689eb3ccc6a82449,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: dc60885acbfd2804fb09f97b55efd53a, type: 2}
+    - target: {fileID: 23571574981567348, guid: 4ba13d2988d971f4689eb3ccc6a82449,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: dc60885acbfd2804fb09f97b55efd53a, type: 2}
+    - target: {fileID: 23729704131240396, guid: 4ba13d2988d971f4689eb3ccc6a82449,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: dc60885acbfd2804fb09f97b55efd53a, type: 2}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 4ba13d2988d971f4689eb3ccc6a82449, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1654942067
 GameObject:
   m_ObjectHideFlags: 0
@@ -204,7 +271,7 @@ GameObject:
   - component: {fileID: 1654942069}
   - component: {fileID: 1654942068}
   m_Layer: 0
-  m_Name: Directional Light
+  m_Name: Luz Principal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
