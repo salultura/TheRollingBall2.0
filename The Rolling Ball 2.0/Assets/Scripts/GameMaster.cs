@@ -4,14 +4,16 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class GameMaster : MonoBehaviour {
+public class GameMaster : MonoBehaviour
+{
     [SerializeField] private Text placar_txt;
     [SerializeField] private Text tempo_txt;
     [SerializeField] private GameObject faseCompleta_txt;
     [SerializeField] private GameObject tempoEsgotado_txt;
 
     private bool fimDoTempo = false;
-    private int placar;
+    private static int placar = 0;
+    private static int placarLevelAnterior = 0;
     private int ponto = 10;
     private int qtdItensColetaveis;
     private float tempoRestante;
@@ -23,20 +25,16 @@ public class GameMaster : MonoBehaviour {
     {
         qtdItensColetaveis = GameObject.FindGameObjectsWithTag("Coletavel").Length;
     }
-    
-    void Start () {
+
+    void Start()
+    {
         IniciarJogo();
-	}
+    }
 
     private void Update()
     {
         IniciarTimer();
         CompletarLevel();
-    }
-
-    private void ResetarPlacar()
-    {
-        placar = 0;
     }
 
     private void DefinirTempoDeFase()
@@ -64,11 +62,12 @@ public class GameMaster : MonoBehaviour {
             tempoEsgotado_txt.SetActive(true);
         }
 
-        if(qtdItensColetaveis == 0)
+        if (qtdItensColetaveis == 0)
         {
             faseCompleta = true;
             faseCompleta_txt.SetActive(true);
             Time.timeScale = .8f;
+            placarLevelAnterior = placar;
             //Salvando o placar
             //PlayerPrefs.SetInt("Placar", placar);
             StartCoroutine(ProximaFase());
@@ -93,7 +92,7 @@ public class GameMaster : MonoBehaviour {
         {
             tempoRestante = 0;
             fimDoTempo = true;
-            
+
         }
         AtualizaTempo();
     }
@@ -104,12 +103,12 @@ public class GameMaster : MonoBehaviour {
         {
             tempo_txt.text = "Tempo: " + (tempoRestante.ToString("f") + "\"").Replace('.', '\'');
         }
-        
+
     }
 
     private void IniciarJogo()
     {
-        ResetarPlacar();
+        //ResetarPlacar();
         AtualizarPlacar();
         DefinirTempoDeFase();
         Time.timeScale = 1;
@@ -117,6 +116,7 @@ public class GameMaster : MonoBehaviour {
 
     public void ReiniciarFase()
     {
+        placar = placarLevelAnterior;
         int cenaAtual = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(cenaAtual);
         //Recuperando o placar da fasde anterior
@@ -126,8 +126,7 @@ public class GameMaster : MonoBehaviour {
     public IEnumerator ProximaFase()
     {
         yield return new WaitForSeconds(3);
-        int cenaAtual = SceneManager.GetActiveScene().buildIndex +1;
+        int cenaAtual = SceneManager.GetActiveScene().buildIndex + 1;
         SceneManager.LoadScene(cenaAtual);
-        
     }
 }
