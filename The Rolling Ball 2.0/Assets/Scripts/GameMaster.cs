@@ -19,13 +19,12 @@ public class GameMaster : MonoBehaviour
 
     //Propriedades do Tempo
     private bool fimDoTempo = false;
-    private float tempoRestante;
+    private float tempoDeFase;
 
     //Propriedades da Fase
     private int qtdItensColetaveis;
     private float dificuldade = 3f;
     private bool faseCompleta = false;
-
 
     private void Awake()
     {
@@ -34,7 +33,9 @@ public class GameMaster : MonoBehaviour
 
     void Start()
     {
-        IniciarJogo();
+        AtualizarPlacar();
+        DefinirTempoDeFase();
+        DespausarJogo();
     }
 
     private void Update()
@@ -45,7 +46,7 @@ public class GameMaster : MonoBehaviour
 
     private void DefinirTempoDeFase()
     {
-        tempoRestante = qtdItensColetaveis * dificuldade;
+        tempoDeFase = qtdItensColetaveis * dificuldade;
     }
 
     public void ColetarItem()
@@ -74,8 +75,6 @@ public class GameMaster : MonoBehaviour
             faseCompleta_txt.SetActive(true);
             Time.timeScale = .8f;
             placarLevelAnterior = placar;
-            //Salvando o placar
-            //PlayerPrefs.SetInt("Placar", placar);
             StartCoroutine(ProximaFase());
         }
     }
@@ -92,13 +91,12 @@ public class GameMaster : MonoBehaviour
 
     private void IniciarTimer()
     {
-        tempoRestante -= Time.deltaTime;
+        tempoDeFase -= Time.deltaTime;
 
-        if (tempoRestante <= 0)
+        if (tempoDeFase <= 0)
         {
-            tempoRestante = 0;
+            tempoDeFase = 0;
             fimDoTempo = true;
-
         }
         AtualizaTempo();
     }
@@ -107,17 +105,8 @@ public class GameMaster : MonoBehaviour
     {
         if (!faseCompleta)
         {
-            tempo_txt.text = "Tempo: " + (tempoRestante.ToString("f") + "\"").Replace('.', '\'');
+            tempo_txt.text = "Tempo: " + (tempoDeFase.ToString("f") + "\"").Replace('.', '\'');
         }
-
-    }
-
-    private void IniciarJogo()
-    {
-        //ResetarPlacar();
-        AtualizarPlacar();
-        DefinirTempoDeFase();
-        Time.timeScale = 1;
     }
 
     public void ReiniciarFase()
@@ -125,8 +114,6 @@ public class GameMaster : MonoBehaviour
         placar = placarLevelAnterior;
         int cenaAtual = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(cenaAtual);
-        //Recuperando o placar da fasde anterior
-        //placar = PlayerPrefs.GetInt("Placar");
     }
 
     public IEnumerator ProximaFase()
