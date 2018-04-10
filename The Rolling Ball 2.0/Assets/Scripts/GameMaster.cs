@@ -37,9 +37,9 @@ public class GameMaster : MonoBehaviour
         CompletarLevel();
     }
 
-    private void DefinirTempoDeFase()
+    public float TempoParaCompletarFase()
     {
-        tempoRestante = qtdItensColetaveis * dificuldade;
+        return qtdItensColetaveis * dificuldade;
     }
 
     public void ColetarItem()
@@ -110,7 +110,7 @@ public class GameMaster : MonoBehaviour
     {
         //ResetarPlacar();
         AtualizarPlacar();
-        DefinirTempoDeFase();
+        TempoParaCompletarFase();
         Time.timeScale = 1;
     }
 
