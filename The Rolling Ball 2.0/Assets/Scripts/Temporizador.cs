@@ -5,41 +5,30 @@ using UnityEngine.UI;
 
 public class Temporizador : MonoBehaviour
 {
-    [SerializeField] private GameMaster gm;
-    [SerializeField] private Text tempo_txt;
-    private float tempoDaFase;
+    private float tempoRestante;
 
-    private void Start()
+    public void DefineTempoDaFase(float tempoDefase)
     {
-        TempoDeFase();
+        tempoRestante = tempoDefase;
     }
 
-    private void Update()
+    public bool Cronometro()
     {
-        IniciarCronometro();
-
-        ImprimeTempo();
-        
-    }
-
-    private void TempoDeFase()
-    {
-        this.tempoDaFase = gm.TempoParaCompletarFase();
-    }
-
-    public float IniciarCronometro()
-    {
-        tempoDaFase -= Time.deltaTime;
-
-        if (tempoDaFase <= 0)
+        tempoRestante -= Time.deltaTime;
+        bool tempoEsgotado = false;
+        if (tempoRestante <= 0)
         {
-            tempoDaFase = 0;            
+            tempoRestante = 0;
+            tempoEsgotado = true;
         }
-        return tempoDaFase;
+        return tempoEsgotado;
     }
 
-    public void ImprimeTempo()
+    public void AtualizaTempo(bool faseCompleta, Text tempo_txt)
     {
-        tempo_txt.text = "Tempo: " + (IniciarCronometro().ToString("f") + "\"").Replace('.', '\'');
+        if (!faseCompleta)
+        {
+            tempo_txt.text = "Tempo: " + (tempoRestante.ToString("f") + "\"").Replace('.', '\'');
+        }
     }
 }

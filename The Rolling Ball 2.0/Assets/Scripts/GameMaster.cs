@@ -6,17 +6,23 @@ using UnityEngine.SceneManagement;
 
 public class GameMaster : MonoBehaviour
 {
+    //Componentes
     [SerializeField] private Text placar_txt;
     [SerializeField] private Text tempo_txt;
     [SerializeField] private GameObject faseCompleta_txt;
     [SerializeField] private GameObject tempoEsgotado_txt;
 
-    private bool fimDoTempo = false;
+    //Propriedades do Placar
     private static int placar = 0;
     private static int placarLevelAnterior = 0;
     private int ponto = 10;
-    private int qtdItensColetaveis;
+
+    //Propriedades do Tempo
+    private bool fimDoTempo = false;
     private float tempoRestante;
+
+    //Propriedades da Fase
+    private int qtdItensColetaveis;
     private float dificuldade = 3f;
     private bool faseCompleta = false;
 
@@ -37,9 +43,9 @@ public class GameMaster : MonoBehaviour
         CompletarLevel();
     }
 
-    public float TempoParaCompletarFase()
+    private void DefinirTempoDeFase()
     {
-        return qtdItensColetaveis * dificuldade;
+        tempoRestante = qtdItensColetaveis * dificuldade;
     }
 
     public void ColetarItem()
@@ -110,7 +116,7 @@ public class GameMaster : MonoBehaviour
     {
         //ResetarPlacar();
         AtualizarPlacar();
-        TempoParaCompletarFase();
+        DefinirTempoDeFase();
         Time.timeScale = 1;
     }
 
