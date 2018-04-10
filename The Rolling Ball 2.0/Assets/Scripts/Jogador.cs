@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ControlaJogador : MonoBehaviour
+public class Jogador : MonoBehaviour
 {
     public float velocidade = 8;
     private Rigidbody rb;
+    [SerializeField] private GameMaster gm;
     // Use this for initialization
     void Start()
     {
@@ -24,5 +25,14 @@ public class ControlaJogador : MonoBehaviour
         Vector3 direcao = new Vector3(movimentoX, 0.0f, movimentoZ);
 
         rb.AddForce(direcao * velocidade);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Coletavel"))
+        {
+            Destroy(other.gameObject);
+            gm.ColetarItem();
+        }
     }
 }
