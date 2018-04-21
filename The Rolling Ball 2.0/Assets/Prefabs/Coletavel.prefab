@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 23200827915334542}
   - component: {fileID: 114276792762246820}
   - component: {fileID: 54403735115246680}
+  - component: {fileID: 114543913441672008}
   m_Layer: 0
   m_Name: Coletavel
   m_TagString: Coletavel
@@ -123,3 +124,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3dcd8fbeb0eb4242babc1cfb63a3479, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114543913441672008
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1925705607941894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3185b846e4c9142815b60f03c6d7d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pontos: 10

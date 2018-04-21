@@ -4,15 +4,25 @@ using UnityEngine;
 
 public class Jogador : MonoBehaviour
 {
-    public float velocidade = 8;
     private Rigidbody rb;
-    [SerializeField] private GameMaster gm;
-    // Use this for initialization
-    void Start()
+
+    private float velocidade = 8;
+    private float forcaPulo = 4;
+    private int vidas = 3;
+        
+    private void Start()
     {
         rb = GetComponent<Rigidbody>();
     }
 
+    private void Update()
+    {
+        if (Input.GetButtonDown("Jump"))
+        {
+            Pular();
+        }
+    }
+    
     void FixedUpdate()
     {
         MovimentacaoDoPersonagem();
@@ -27,12 +37,8 @@ public class Jogador : MonoBehaviour
         rb.AddForce(direcao * velocidade);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void Pular()
     {
-        if (other.CompareTag("Coletavel"))
-        {
-            Destroy(other.gameObject);
-            gm.ColetarItem();
-        }
+        rb.AddForce(Vector3.up * forcaPulo, ForceMode.Impulse);
     }
 }

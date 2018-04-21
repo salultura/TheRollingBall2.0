@@ -624,9 +624,13 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114325084579313482, guid: 0959e72efd4c76a4d85d24b806702bc5,
         type: 2}
-      propertyPath: gm
+      propertyPath: gerenciador
       value: 
       objectReference: {fileID: 1208901262}
+    - target: {fileID: 1450421248064796, guid: 0959e72efd4c76a4d85d24b806702bc5, type: 2}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0959e72efd4c76a4d85d24b806702bc5, type: 2}
   m_IsPrefabParent: 0
@@ -645,6 +649,7 @@ GameObject:
   - component: {fileID: 763970720}
   - component: {fileID: 763970722}
   - component: {fileID: 763970721}
+  - component: {fileID: 763970723}
   m_Layer: 5
   m_Name: Tempo
   m_TagString: Untagged
@@ -709,6 +714,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 763970719}
+--- !u!114 &763970723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 763970719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7108d827f9b13f4393348c8c30c4b65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &764906638
 GameObject:
   m_ObjectHideFlags: 0
@@ -1200,7 +1216,7 @@ GameObject:
   - component: {fileID: 1208901263}
   - component: {fileID: 1208901262}
   m_Layer: 0
-  m_Name: GameMaster
+  m_Name: Gerenciador do Jogo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1217,8 +1233,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f00f6f770caecb4689273c4db3bb86f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  placar_txt: {fileID: 1620668553}
-  tempo_txt: {fileID: 763970721}
+  placar: {fileID: 1620668555}
+  timer: {fileID: 763970723}
   faseCompleta_txt: {fileID: 1736680033}
   tempoEsgotado_txt: {fileID: 66990989}
 --- !u!4 &1208901263
@@ -1667,6 +1683,7 @@ GameObject:
   - component: {fileID: 1620668552}
   - component: {fileID: 1620668554}
   - component: {fileID: 1620668553}
+  - component: {fileID: 1620668555}
   m_Layer: 5
   m_Name: Placar
   m_TagString: Untagged
@@ -1731,6 +1748,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1620668551}
+--- !u!114 &1620668555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1620668551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94b1a3775d0a73141a7459e6859b5e0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1654942067
 GameObject:
   m_ObjectHideFlags: 0

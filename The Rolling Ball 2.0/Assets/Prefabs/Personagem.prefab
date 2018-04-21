@@ -112,6 +112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocidade: 8
+  gerenciador: {fileID: 0}
 --- !u!135 &135108236992822472
 SphereCollider:
   m_ObjectHideFlags: 1

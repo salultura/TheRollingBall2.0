@@ -4,22 +4,17 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class GameMaster : MonoBehaviour
+public class GerenciadorDoJogo : MonoBehaviour
 {
-    //Componentes
-    [SerializeField] private Text placar_txt;
-    [SerializeField] private Text tempo_txt;
+    //Componentes externos
+    [SerializeField] private Placar placar;
+    [SerializeField] private TimerRegressivo timer;
     [SerializeField] private GameObject faseCompleta_txt;
     [SerializeField] private GameObject tempoEsgotado_txt;
 
     //Propriedades do Placar
-    private static int placar = 0;
-    private static int placarLevelAnterior = 0;
-    private int ponto = 10;
-
-    //Propriedades do Tempo
-    private bool fimDoTempo = false;
-    private float tempoDeFase;
+    private int pontuacao = 0;
+    private int pontuacaoFaseAnterior = 0;
 
     //Propriedades da Fase
     private int qtdItensColetaveis;
@@ -28,42 +23,36 @@ public class GameMaster : MonoBehaviour
 
     private void Awake()
     {
-        qtdItensColetaveis = GameObject.FindGameObjectsWithTag("Coletavel").Length;
+                
     }
 
     void Start()
     {
-        AtualizarPlacar();
-        DefinirTempoDeFase();
+        qtdItensColetaveis = GameObject.Find("Itens").transform.childCount;
         DespausarJogo();
+        timer.IniciarTimer(DefinirTempoDeFase());
     }
 
     private void Update()
     {
-        IniciarTimer();
         CompletarLevel();
     }
 
-    private void DefinirTempoDeFase()
+    private float DefinirTempoDeFase()
     {
-        tempoDeFase = qtdItensColetaveis * dificuldade;
+        return qtdItensColetaveis * dificuldade;
     }
 
-    public void ColetarItem()
+    public void ColetarItem(int pontos)
     {
-        placar += ponto;
+        pontuacao += pontos;
         qtdItensColetaveis--;
-        AtualizarPlacar();
-    }
-
-    private void AtualizarPlacar()
-    {
-        placar_txt.text = "Placar: " + placar;
+        placar.Atualizar(pontuacao);
     }
 
     private void CompletarLevel()
     {
-        if (fimDoTempo)
+        if (timer.FimDeTempo)
         {
             PausarJogo();
             tempoEsgotado_txt.SetActive(true);
@@ -73,8 +62,9 @@ public class GameMaster : MonoBehaviour
         {
             faseCompleta = true;
             faseCompleta_txt.SetActive(true);
+            timer.PausarTimer();
             Time.timeScale = .8f;
-            placarLevelAnterior = placar;
+            pontuacaoFaseAnterior = pontuacao;
             StartCoroutine(ProximaFase());
         }
     }
@@ -89,29 +79,9 @@ public class GameMaster : MonoBehaviour
         Time.timeScale = 1;
     }
 
-    private void IniciarTimer()
-    {
-        tempoDeFase -= Time.deltaTime;
-
-        if (tempoDeFase <= 0)
-        {
-            tempoDeFase = 0;
-            fimDoTempo = true;
-        }
-        AtualizaTempo();
-    }
-
-    private void AtualizaTempo()
-    {
-        if (!faseCompleta)
-        {
-            tempo_txt.text = "Tempo: " + (tempoDeFase.ToString("f") + "\"").Replace('.', '\'');
-        }
-    }
-
     public void ReiniciarFase()
     {
-        placar = placarLevelAnterior;
+        pontuacao = pontuacaoFaseAnterior;
         int cenaAtual = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(cenaAtual);
     }
